@@ -1,0 +1,7 @@
+/* Local component styles for the app shell.
+   General layout classes and variable tokens live in src/styles.css. */
+:host {
+  display: block;
+  width: 100%;
+  max-width: 480px;
+}

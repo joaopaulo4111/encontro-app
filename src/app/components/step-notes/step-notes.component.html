@@ -1,0 +1,48 @@
+<div class="screen-container slide-in-right">
+  <app-progress-bar 
+    [currentStep]="5" 
+    [totalSteps]="6" 
+    stepLabel="Observações"
+  ></app-progress-bar>
+
+  <div class="screen-wrapper">
+    <!-- Screen Header -->
+    <div class="screen-header">
+      <h2 class="screen-title">Algum detalhe especial? 💬</h2>
+      <p class="screen-subtitle">Opcional — mas qualquer dica é bem-vinda!</p>
+    </div>
+
+    <!-- Screen Content -->
+    <div class="screen-content">
+      <div class="textarea-container stagger-item">
+        <textarea
+          class="textarea-input"
+          placeholder="Ex: Prefiro lugares quietos, tenho alergia a amendoim, gosto de jantar mais tarde..."
+          maxlength="500"
+          [value]="formService.notes()"
+          (input)="formService.notes.set($any($event.target).value); autoResize($event)"
+          aria-label="Observações ou detalhes especiais"
+        ></textarea>
+        <div class="counter-row">
+          <span class="char-count" aria-live="polite">
+            {{ formService.notes().length }} / 500
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions buttons footer -->
+    <div class="screen-footer stagger-item">
+      <button type="button" class="btn btn-outline" (click)="onBackClick()">
+        Voltar
+      </button>
+      <button 
+        type="button" 
+        class="btn btn-primary" 
+        (click)="onNextClick()"
+      >
+        Ver minhas respostas 🎉
+      </button>
+    </div>
+  </div>
+</div>

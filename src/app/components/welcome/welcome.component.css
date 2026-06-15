@@ -1,0 +1,65 @@
+.welcome-screen {
+  background: linear-gradient(180deg, rgba(249, 168, 212, 0.12) 0%, rgba(254, 243, 199, 0.18) 55%, #FFFFFF 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 1;
+  padding-top: 48px;
+  padding-bottom: 32px;
+}
+
+.welcome-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  width: 100%;
+}
+
+.envelope-emoji {
+  font-size: 72px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 6px 12px rgba(249, 168, 212, 0.35));
+}
+
+.animate-pulse {
+  animation: pulseEmoji 2.2s infinite ease-in-out;
+}
+
+@keyframes pulseEmoji {
+  0% {
+    transform: scale(1);
+    filter: drop-shadow(0 6px 12px rgba(249, 168, 212, 0.35));
+  }
+  50% {
+    transform: scale(1.08);
+    filter: drop-shadow(0 8px 18px rgba(249, 168, 212, 0.5));
+  }
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 6px 12px rgba(249, 168, 212, 0.35));
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
+.title-container {
+  margin-bottom: 12px;
+  max-width: 95%;
+}
+
+.welcome-actions {
+  width: 100%;
+  margin-top: auto;
+}
+
+.btn-block {
+  width: 100%;
+}

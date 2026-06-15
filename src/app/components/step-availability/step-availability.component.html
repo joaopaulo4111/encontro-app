@@ -1,0 +1,82 @@
+<div class="screen-container slide-in-right">
+  <app-progress-bar 
+    [currentStep]="1" 
+    [totalSteps]="6" 
+    stepLabel="Disponibilidade"
+  ></app-progress-bar>
+
+  <div class="screen-wrapper">
+    <!-- Header of step 1 -->
+    <div class="screen-header">
+      <h2 class="screen-title">Quando você costuma estar disponível? 📅</h2>
+      <div class="subtitle-row">
+        <span class="screen-subtitle">Selecione um ou mais dias</span>
+        @if (formService.days().length > 0) {
+          <span class="selection-counter" aria-live="polite">
+            {{ formService.days().length }} {{ formService.days().length === 1 ? 'selecionado' : 'selecionados' }}
+          </span>
+        }
+      </div>
+    </div>
+
+    <!-- Grid of available days -->
+    <div class="screen-content">
+      <div class="days-grid">
+        @for (day of availableDays; track day) {
+          <div class="stagger-item">
+            <app-checkbox-card
+              [label]="day"
+              [selected]="isDaySelected(day)"
+              (toggle)="toggleDay(day)"
+            ></app-checkbox-card>
+          </div>
+        }
+      </div>
+
+      <!-- Divider line -->
+      <hr class="section-divider stagger-item" aria-hidden="true" />
+
+      <!-- Sub-section for time slots -->
+      <div class="screen-header stagger-item">
+        <h3 class="section-title">Em qual faixa de horário você costuma estar livre?</h3>
+        <p class="screen-subtitle">Pode marcar mais de um</p>
+      </div>
+
+      <div class="slots-grid">
+        @for (slot of timeSlotsData; track slot.value) {
+          <div class="stagger-item">
+            <app-checkbox-card
+              [label]="slot.label"
+              [icon]="slot.icon"
+              [selected]="isTimeSlotSelected(slot.value)"
+              (toggle)="toggleTimeSlot(slot.value)"
+            ></app-checkbox-card>
+          </div>
+        }
+      </div>
+
+      <!-- Validation feedback -->
+      @if (showValidationError() && !isValid) {
+        <p class="validation-error" id="availability-error" role="alert">
+          Selecione pelo menos um dia e uma faixa de horário. ❤️
+        </p>
+      }
+    </div>
+
+    <!-- Step Navigation Actions -->
+    <div class="screen-footer stagger-item">
+      <button type="button" class="btn btn-outline" (click)="onBackClick()">
+        Voltar
+      </button>
+      <button 
+        type="button" 
+        class="btn btn-primary" 
+        [disabled]="!isValid" 
+        [attr.aria-describedby]="(!isValid && showValidationError()) ? 'availability-error' : null"
+        (click)="onNextClick()"
+      >
+        Próximo
+      </button>
+    </div>
+  </div>
+</div>

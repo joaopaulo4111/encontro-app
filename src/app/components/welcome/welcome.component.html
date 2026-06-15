@@ -1,0 +1,23 @@
+<div class="screen-wrapper welcome-screen">
+  <div class="welcome-center">
+    <div class="envelope-emoji animate-pulse" aria-hidden="true">💌</div>
+    
+    <div class="title-container">
+      @if (guestName()) {
+        <h1 class="screen-title text-center">Olá, {{ guestName() }}! Vamos Planejar Nosso Encontro ❤️</h1>
+      } @else {
+        <h1 class="screen-title text-center">Vamos Planejar Nosso Encontro ❤️</h1>
+      }
+    </div>
+    
+    <p class="screen-subtitle text-center">
+      Responda algumas perguntinhas para eu conhecer suas preferências.
+    </p>
+  </div>
+  
+  <div class="welcome-actions">
+    <button type="button" class="btn btn-primary btn-block" (click)="onStartClick()">
+      Começar
+    </button>
+  </div>
+</div>

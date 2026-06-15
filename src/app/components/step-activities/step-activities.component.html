@@ -1,0 +1,71 @@
+<div class="screen-container slide-in-right">
+  <app-progress-bar 
+    [currentStep]="3" 
+    [totalSteps]="6" 
+    stepLabel="Atividades"
+  ></app-progress-bar>
+
+  <div class="screen-wrapper">
+    <!-- Screen Header -->
+    <div class="screen-header">
+      <h2 class="screen-title">O que você gosta de fazer? 🎉</h2>
+      <p class="screen-subtitle">Selecione tudo que te agrada</p>
+    </div>
+
+    <!-- Screen Content -->
+    <div class="screen-content">
+      <!-- Grid of activities -->
+      <div class="activities-grid">
+        @for (option of activityOptions; track option.label) {
+          <div class="stagger-item">
+            <app-checkbox-card
+              [label]="option.label"
+              [icon]="option.icon"
+              [selected]="isActivitySelected(option.label)"
+              (toggle)="toggleActivity(option.label)"
+            ></app-checkbox-card>
+          </div>
+        }
+      </div>
+
+      <!-- Custom Input for "Outros" -->
+      @if (showCustomInput) {
+        <div class="custom-input-container">
+          <input
+            type="text"
+            class="text-input custom-text-input"
+            placeholder="Qual atividade?"
+            maxlength="80"
+            [value]="formService.customActivity()"
+            (input)="formService.customActivity.set($any($event.target).value)"
+            aria-label="Descreva a outra atividade"
+          />
+          <div class="counter-row">
+            <span class="char-count">{{ formService.customActivity().length }} / 80</span>
+          </div>
+        </div>
+      }
+
+      <!-- Subtle warning when nothing selected -->
+      @if (isSelectionEmpty) {
+        <div class="subtle-warning stagger-item" role="status">
+          Você não selecionou nada — tudo bem!
+        </div>
+      }
+    </div>
+
+    <!-- Screen Footer actions -->
+    <div class="screen-footer stagger-item">
+      <button type="button" class="btn btn-outline" (click)="onBackClick()">
+        Voltar
+      </button>
+      <button 
+        type="button" 
+        class="btn btn-primary" 
+        (click)="onNextClick()"
+      >
+        Próximo
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,139 @@
+<div class="screen-container slide-in-right">
+  <div class="screen-wrapper result-screen">
+    <!-- Header -->
+    <div class="result-header text-center">
+      <div class="confetti-emoji animate-bounce" aria-hidden="true">🎊</div>
+      <h2 class="screen-title text-center">Pronto! Aqui estão suas preferências</h2>
+      <p class="screen-subtitle text-center">Obrigado por preencher! Isso vai me ajudar muito. 💕</p>
+    </div>
+
+    <!-- Cards container -->
+    <div class="result-cards">
+      <!-- 1. Days Available -->
+      <div class="result-card stagger-item">
+        <div class="card-header">
+          <span class="card-icon" aria-hidden="true">📅</span>
+          <h3 class="card-title">Dias disponíveis</h3>
+        </div>
+        <div class="card-body">
+          @if (formService.days().length > 0) {
+            <div class="tags-container">
+              @for (day of formService.days(); track day) {
+                <span class="tag tag-pink">{{ day }}</span>
+              }
+            </div>
+          } @else {
+            <span class="no-info">Não informado</span>
+          }
+        </div>
+      </div>
+
+      <!-- 2. Time Slots -->
+      <div class="result-card stagger-item">
+        <div class="card-header">
+          <span class="card-icon" aria-hidden="true">⏰</span>
+          <h3 class="card-title">Faixas de horário</h3>
+        </div>
+        <div class="card-body">
+          @if (formService.timeSlots().length > 0) {
+            <div class="tags-container">
+              @for (slot of formService.timeSlots(); track slot) {
+                <span class="tag tag-pink">{{ slot }}</span>
+              }
+            </div>
+          } @else {
+            <span class="no-info">Não informado</span>
+          }
+        </div>
+      </div>
+
+      <!-- 3. Preferred Time -->
+      <div class="result-card stagger-item">
+        <div class="card-header">
+          <span class="card-icon" aria-hidden="true">✨</span>
+          <h3 class="card-title">Horário favorito</h3>
+        </div>
+        <div class="card-body">
+          @if (formService.preferredTime()) {
+            <span class="tag tag-purple">{{ formService.preferredTime() }}</span>
+          } @else {
+            <span class="no-info">Não informado</span>
+          }
+        </div>
+      </div>
+
+      <!-- 4. Activities -->
+      <div class="result-card stagger-item">
+        <div class="card-header">
+          <span class="card-icon" aria-hidden="true">🎉</span>
+          <h3 class="card-title">Atividades preferidas</h3>
+        </div>
+        <div class="card-body">
+          @if (formService.activities().length > 0) {
+            <div class="tags-container">
+              @for (activity of formService.activities(); track activity) {
+                <span class="tag tag-pink">{{ activity }}</span>
+              }
+            </div>
+          } @else {
+            <span class="no-info">Não informado</span>
+          }
+        </div>
+      </div>
+
+      <!-- 5. Food -->
+      <div class="result-card stagger-item">
+        <div class="card-header">
+          <span class="card-icon" aria-hidden="true">😋</span>
+          <h3 class="card-title">Comidas preferidas</h3>
+        </div>
+        <div class="card-body">
+          @if (formService.foods().length > 0) {
+            <div class="tags-container">
+              @for (food of formService.foods(); track food) {
+                <span class="tag tag-pink">{{ food }}</span>
+              }
+            </div>
+          } @else {
+            <span class="no-info">Não informado</span>
+          }
+        </div>
+      </div>
+
+      <!-- 6. Notes -->
+      <div class="result-card stagger-item">
+        <div class="card-header">
+          <span class="card-icon" aria-hidden="true">💬</span>
+          <h3 class="card-title">Observações</h3>
+        </div>
+        <div class="card-body">
+          @if (formService.notes().trim()) {
+            <p class="notes-text">{{ formService.notes() }}</p>
+          } @else {
+            <span class="no-info">Não informado</span>
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions buttons -->
+    <div class="result-actions stagger-item">
+      <div class="main-actions-row">
+        <button type="button" class="btn btn-outline flex-1" (click)="copyToClipboard()">
+          Copiar respostas 📋
+        </button>
+        <button type="button" class="btn btn-primary flex-1" (click)="shareResults()">
+          Compartilhar 📤
+        </button>
+      </div>
+      <button type="button" class="btn btn-restart text-center" (click)="onRestartClick()">
+        Recomeçar 🔄
+      </button>
+    </div>
+  </div>
+
+  <!-- Toast notification system -->
+  <div class="toast-container" [class.show]="showToast()" role="alert" aria-live="assertive">
+    <div class="toast-content">{{ toastMessage() }}</div>
+  </div>
+</div>

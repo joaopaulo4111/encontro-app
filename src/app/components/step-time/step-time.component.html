@@ -1,0 +1,43 @@
+<div class="screen-container slide-in-right">
+  <app-progress-bar 
+    [currentStep]="2" 
+    [totalSteps]="6" 
+    stepLabel="Horário favorito"
+  ></app-progress-bar>
+
+  <div class="screen-wrapper">
+    <div class="screen-header">
+      <h2 class="screen-title">Qual é seu horário favorito para um encontro? ✨</h2>
+      <p class="screen-subtitle">Escolha apenas um</p>
+    </div>
+
+    <div class="screen-content">
+      <div class="options-list">
+        @for (option of timeOptions; track option.label) {
+          <div class="stagger-item">
+            <app-checkbox-card
+              [label]="option.label"
+              [icon]="option.icon"
+              [selected]="formService.preferredTime() === option.label"
+              (toggle)="selectTime(option.label)"
+            ></app-checkbox-card>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="screen-footer stagger-item">
+      <button type="button" class="btn btn-outline" (click)="onBackClick()">
+        Voltar
+      </button>
+      <button 
+        type="button" 
+        class="btn btn-primary" 
+        [disabled]="!formService.preferredTime()" 
+        (click)="onNextClick()"
+      >
+        Próximo
+      </button>
+    </div>
+  </div>
+</div>

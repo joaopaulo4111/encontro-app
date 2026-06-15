@@ -1,0 +1,16 @@
+<div class="progress-bar-container">
+  <div class="progress-info">
+    <span class="step-title">{{ stepLabel }}</span>
+    <span class="percentage-text">Etapa {{ currentStep }} de {{ totalSteps }} ({{ percentage }}%)</span>
+  </div>
+  <div 
+    class="track" 
+    role="progressbar" 
+    [attr.aria-valuenow]="percentage" 
+    aria-valuemin="0" 
+    aria-valuemax="100"
+    [attr.aria-label]="'Progresso: ' + stepLabel"
+  >
+    <div class="fill" [style.width.%]="percentage"></div>
+  </div>
+</div>

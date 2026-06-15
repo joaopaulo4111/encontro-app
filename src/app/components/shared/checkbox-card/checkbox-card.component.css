@@ -1,0 +1,113 @@
+.card-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  width: 100%;
+  padding: 16px;
+  background-color: var(--color-surface, #FFFFFF);
+  border: 1px solid var(--color-border, #E5E7EB);
+  border-radius: var(--radius-card, 12px);
+  cursor: pointer;
+  outline: none;
+  font-family: inherit;
+  transition: border-color var(--transition-base, 200ms ease-out), 
+              background-color var(--transition-base, 200ms ease-out),
+              box-shadow var(--transition-base, 200ms ease-out),
+              transform 150ms ease-out;
+  text-align: left;
+  user-select: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Hover State */
+.card-container:hover {
+  border-color: var(--color-primary, #F9A8D4);
+  box-shadow: var(--shadow-soft, 0 2px 8px rgba(249,168,212,0.25));
+}
+
+/* Active touch/click state */
+.card-container:active {
+  transform: scale(0.97);
+}
+
+/* Accessibility Focus Ring */
+.card-container:focus-visible {
+  outline: 2px solid var(--color-accent, #C084FC);
+  outline-offset: 2px;
+}
+
+/* Selected State */
+.card-container.selected {
+  border-color: var(--color-primary, #F9A8D4);
+  background-color: #FFF0F6; /* Light pink background */
+  box-shadow: var(--shadow-soft, 0 2px 8px rgba(249,168,212,0.25));
+  animation: pop 150ms ease-out;
+}
+
+.card-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: calc(100% - 24px); /* Leave room for check icon on right */
+}
+
+.card-icon {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-label {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-text, #374151);
+}
+
+/* Check Wrapper on top-right */
+.check-wrapper {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary, #F9A8D4);
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 150ms ease-out, transform 150ms ease-out;
+}
+
+.selected .check-wrapper {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Self-drawing checkmark SVG */
+.check-svg {
+  width: 14px;
+  height: 14px;
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
+  transition: stroke-dashoffset 250ms ease-out 50ms;
+}
+
+.selected .check-svg {
+  stroke-dashoffset: 0;
+}
+
+/* Springy entrance pop keyframe */
+@keyframes pop {
+  0% {
+    transform: scale(0.97);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
