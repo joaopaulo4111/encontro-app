@@ -35,14 +35,14 @@ export class ResultComponent {
     
     const today = new Date().toLocaleDateString('pt-BR');
 
-    return `Meu Planejamento de Encontro ❤️\n\n` +
+    return `Um pouco sobre mim: \n\n` +
            `📅 Dias disponíveis: ${formatList(data.days)}\n` +
            `⏰ Horários livres: ${formatList(data.timeSlots)}\n` +
            `✨ Horário favorito: ${data.preferredTime || 'Não informado'}\n` +
            `🎉 Atividades: ${formatList(data.activities)}\n` +
            `😋 Comidas: ${formatList(data.foods)}\n` +
            `💬 Observações: ${formatNotes(data.notes)}\n\n` +
-           `Gerado em: ${today}`;
+           `Eu Catarina declaro que gosto mais do flamengo do que do são paulo.  ${today}`;
   }
 
   /**
